@@ -1,6 +1,30 @@
+body{
+    background-color: rgb(34, 69, 100);
+}
 .card{
-    height: 70% !important;
+    height: 80px !important;
 }
 .card img{
     height: 100% !important;
+}
+.flipCard{
+    width: 70px;
+    margin-left: 10%;
+    border-radius: 4px;
+}
+/* .front{
+    width: 70px;
+}
+.back{
+    width: 70px;
+} */
+.frontImg{
+    width: 70px;
+    height: 90px;
+    border-radius: 4px;
+}
+.backImg{
+    width: 70px;
+    height: 90px;
+    border-radius: 4px;
 }
