@@ -13,6 +13,7 @@ $(() => {
         trigger: 'click'
     });
     var clickedCounter = 0;  // how many cards are clicked now 
+    var pairFound = 0;
     $(".flipCard").click(function () {
         if(!$(this).hasClass("disabledClick")){ 
             // console.log("click");
@@ -27,10 +28,12 @@ $(() => {
                 if (img1 == img2) {
                     
                     // audio.play();
-                    
+                    pairFound++;
+                    console.log(pairFound)
                     $(".clickedCard").off(".flip"); // turns off the ability to flip
                     clickedCounter = 0;
                     $(".clickedCard").addClass('disabledClick');
+                    //if pairFound == amount of pairs end the game
                 }
                 else{
                     setTimeout(function(){
