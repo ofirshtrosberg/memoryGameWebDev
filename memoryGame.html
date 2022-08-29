@@ -13,11 +13,44 @@
     <!-- nav bar -->
     <nav class="navbar bg-dark">
         <div class="container-fluid">
-            <span class="navbar-text">
-                Navbar text with an inline element
-            </span>
+            <ul>
+                <li>
+                    <button type="button" class="btn btn-primary newGameBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        New Game
+                      </button>
+                </li>
+            </ul>
         </div>
     </nav>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Game details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <label>Name:</label>
+          <br>
+          <input type="text" placeholder="Enter your name">
+          <br>
+          <label>Number of cards:</label>
+          <br>
+          <input type="text" placeholder="Enter number of cards">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button id="playBtn" type="button" class="btn btn-primary">Play</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
     <div class="container cards">
         <div class="row mt-2 justify-content-center">
             <div class="col-1">

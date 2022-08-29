@@ -40,11 +40,6 @@ $(() => {
     }
 //-------- Creating the Board Game --------//
 
-
-
-
-
-
     var audio = new Audio("http://music.ogg");
     // הכנסת שם ומספר קלפים 
 
