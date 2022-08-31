@@ -1,5 +1,4 @@
 $(() => {
-
     //-------- Creating the Board Game --------//
     var imgArr =
         ['/images/img1.png',
@@ -53,7 +52,7 @@ $(() => {
             '/images/img49.jpg',
             '/images/img50.png'];
 
-    var numCardUser = 100;
+    var numCardUser = 6;
     var numOfPairs = numCardUser / 2; //? 10 from the user ----> means it should be 5 = from user/2 --> update dynamically
 
 
@@ -90,33 +89,25 @@ $(() => {
     //-------- Creating the Board Game --------//
 
     function endGame() {
-        console.log("end of the game");
+        $(".cards").addClass("d-none");
+        $(".endOfGameDiv").removeClass("d-none");
+        var clappingSound = new Audio("./sounds/clapping.mp3");
+        clappingSound.play();
     }
-
-
-    var audio = new Audio("http://music.ogg");
-    // הכנסת שם ומספר קלפים 
-
-    //הוספה דינאמית של כרטיסים
-
-    //מציאת זוג + אולי סאונד
-
-    // var arr=['','',......]
-    //foreach
     
     $(".flipCard").flip({
         axis: 'y',
         trigger: 'click'
     });
     var clickedCounter = 0;  // how many cards are clicked now 
-    var pairFound = 0;
+    var pairFound = 0; //number of pair found
     $(".flipCard").click(function () {
         if (!$(this).hasClass("disabledClick")) {
-            console.log("click");
+            var clickSound = new Audio("./sounds/clickAudio.wav");
+            clickSound.play();
             clickedCounter++;
             $(this).addClass("clickedCard");
             $(this).addClass("disabledClick");
-            // $(this).off(".flip");
 
             if (clickedCounter == 2) {
                 document.getElementsByClassName('cards')[0].style.pointerEvents = 'none';
@@ -127,8 +118,9 @@ $(() => {
                 var img2 = card2.getElementsByClassName("backImg")[0].src;
 
                 if (img1 == img2) {
-
-                    // audio.play();
+                    setTimeout(function () {
+                    var pairFoundSound = new Audio("./sounds/pairFoundAudio.wav");
+                    pairFoundSound.play();
                     pairFound++;
                     console.log(pairFound)
                     $(card1).off(".flip"); // turns off the ability to flip
@@ -138,8 +130,11 @@ $(() => {
                     $(card2).removeClass("clickedCard");
                      document.getElementsByClassName('cards')[0].style.pointerEvents = 'auto';
                     if (pairFound == numOfPairs) {
-                        endGame();
+                        setTimeout(function () {
+                            endGame();
+                        }, 1500);
                     }
+                }, 1000); 
                 }
                 else {
                     setTimeout(function () {
@@ -160,5 +155,4 @@ $(() => {
         }
        
     });
-    //סיום המשחק 
 });
