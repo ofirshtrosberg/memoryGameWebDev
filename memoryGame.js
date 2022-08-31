@@ -103,6 +103,7 @@ $(() => {
 
     // var arr=['','',......]
     //foreach
+    
     $(".flipCard").flip({
         axis: 'y',
         trigger: 'click'
@@ -111,13 +112,15 @@ $(() => {
     var pairFound = 0;
     $(".flipCard").click(function () {
         if (!$(this).hasClass("disabledClick")) {
-            // console.log("click");
+            console.log("click");
             clickedCounter++;
             $(this).addClass("clickedCard");
             $(this).addClass("disabledClick");
             // $(this).off(".flip");
 
             if (clickedCounter == 2) {
+                document.getElementsByClassName('cards')[0].style.pointerEvents = 'none';
+
                 var card1 = document.getElementsByClassName("clickedCard")[0];
                 var card2 = document.getElementsByClassName("clickedCard")[1];
                 var img1 = card1.getElementsByClassName("backImg")[0].src;
@@ -133,6 +136,7 @@ $(() => {
                     clickedCounter = 0;
                     $(card1).removeClass("clickedCard");
                     $(card2).removeClass("clickedCard");
+                     document.getElementsByClassName('cards')[0].style.pointerEvents = 'auto';
                     if (pairFound == numOfPairs) {
                         endGame();
                     }
@@ -146,10 +150,15 @@ $(() => {
                         $(card2).removeClass("disabledClick");
                         $(card2).removeClass("clickedCard");
                         clickedCounter = 0;
+                        document.getElementsByClassName('cards')[0].style.pointerEvents = 'auto';
                     }, 1500);
                 }
             }
         }
+        else{
+            $(this).flip(true)
+        }
+       
     });
     //סיום המשחק 
 });
