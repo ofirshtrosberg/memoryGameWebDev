@@ -53,7 +53,7 @@ $(() => {
             '/images/img49.jpg',
             '/images/img50.png'];
 
-    var numCardUser = 10;
+    var numCardUser = 100;
     var numOfPairs = numCardUser / 2; //? 10 from the user ----> means it should be 5 = from user/2 --> update dynamically
 
 
@@ -66,34 +66,32 @@ $(() => {
         CurrImgArr[count + 1] = imgArr[i];
         count += 2;
     }
-    console.log(CurrImgArr);
+    // console.log(CurrImgArr);
 
 
     // Shuffle the images array
     // var shuffledImgArr = imgArr.sort(() => Math.random() - 0.5).slice(0, numOfPairs); //? using the cardsNum
     var shuffledImgArr = CurrImgArr.sort(() => Math.random() - 0.5).slice(0, numCardUser); //? using the cardsNum
-    console.log(shuffledImgArr);
+    // console.log(shuffledImgArr);
 
 
     // Creating the cards for the game from the shuffled new img array 
     for (var i = 0; i < shuffledImgArr.length; i++) {
         var card = $(".flipCard").prop("outerHTML");
-        console.log(card);
+        // console.log(card);
         // Must copy to another var in order to save the changes
         var NewCard = $(card);
         NewCard.removeClass("d-none");
         $(".backImg", NewCard).attr("src", shuffledImgArr[i]);
-        console.log(NewCard);
+        // console.log("!!!!!!!!!!!!!");
+        // console.log(NewCard);
         $(".cardsRow").append(NewCard);
-
-    }
+    } 
     //-------- Creating the Board Game --------//
 
     function endGame() {
         console.log("end of the game");
     }
-
-
 
 
     var audio = new Audio("http://music.ogg");
