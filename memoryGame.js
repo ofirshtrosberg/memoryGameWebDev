@@ -133,7 +133,7 @@ $(() => {
         //-------- Creating the Board Game --------//
 
         function endGame() {
-            $(".cards").addClass("d-none"); //remove the cards
+            // $(".cards").addClass("d-none"); //remove the cards
             $(".endOfGameDiv").removeClass("d-none"); //show end of game form
             var clappingSound = new Audio("./sounds/clapping.mp3"); //end of game sound
             clappingSound.play();
@@ -203,5 +203,16 @@ $(() => {
             }
 
         });
+        $("#startOver").click(function () {
+            $(".cardsRow").children().not(".flipCard.d-none").remove();
+            $(".endOfGameDiv").addClass("d-none");
+            startGame(userName, numCards);
+
+        });
+        $("#newGame").click(function () {
+            $(".cardsRow").children().not(".flipCard.d-none").remove();
+            $(".endOfGameDiv").addClass("d-none");
+            $('.newGameForm').modal('toggle');
+        });  
     }
 });
