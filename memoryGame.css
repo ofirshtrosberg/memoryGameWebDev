@@ -1,0 +1,37 @@
+body{
+    background-color: rgb(34, 69, 100);
+}
+li{
+    float: left;
+    margin-left: 20px;
+}
+input{
+    height: 35px;
+    width: 300px;
+    border-radius: 11px;
+    border: 1px solid rgb(53, 53, 104);
+    outline: none;
+}
+.newGameBtn{
+    position: absolute;
+}
+.card{
+    height: 80px !important;
+}
+.card img{
+    height: 100% !important;
+}
+.flipCard{
+    width: 90px;
+    border-radius: 4px;
+}
+.frontImg{
+    width: 90px;
+    height: 110px;
+    border-radius: 4px;
+}
+.backImg{
+    width: 90px;
+    height: 110px;
+    border-radius: 4px;
+}
