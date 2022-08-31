@@ -35,3 +35,15 @@ input{
     height: 110px;
     border-radius: 4px;
 }
+.error{
+    color: rgb(241, 10, 10);
+    height: 15px;
+    padding-top: 3px;
+   /* padding-bottom:px; */
+}
+.userName{
+    color:aliceblue;
+    text-align: center;
+    font-size: 17px;
+}
+
