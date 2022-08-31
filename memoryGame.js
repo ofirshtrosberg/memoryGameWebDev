@@ -54,13 +54,10 @@ $(() => {
             '/images/img50.png'];
 
 
-
-
     var numCardUser = 0;
     var userNameInput;
 
  
-    
     $("#playBtn").click(() =>{
         var userName = document.getElementById("inputUserName").value;
         console.log(userName);
@@ -100,9 +97,10 @@ $(() => {
             $('.newGameForm').modal('toggle');
             startGame(userNameInput, numCardUser);       
         }
-
-    });
-
+     });
+     
+    
+   
 
     function startGame(userName, numCards)
     {
@@ -111,6 +109,18 @@ $(() => {
         console.log("test");
         console.log(userName);
         console.log(numCards);
+       
+       
+        // Creating the cards for the game from the shuffled new img array 
+        for (var i = 0; i < shuffledImgArr.length; i++) {
+            var card = $(".flipCard").prop("outerHTML");
+            // console.log(card);
+            // Must copy to another var in order to save the changes
+            var NewCard = $(card);
+            NewCard.removeClass("d-none");
+            $(".backImg", NewCard).attr("src", shuffledImgArr[i]);
+            $(".cardsRow").append(NewCard);
+        } 
 
         //-------- Creating the Board Game --------//
 
@@ -127,7 +137,6 @@ $(() => {
             count += 2;
         }
         console.log(CurrImgArr);
-
 
         // Shuffle the images array
         var shuffledImgArr = CurrImgArr.sort(() => Math.random() - 0.5).slice(0, numCardUser); 
