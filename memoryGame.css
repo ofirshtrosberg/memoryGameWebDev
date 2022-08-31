@@ -1,9 +1,11 @@
 body{
     background-color: rgb(34, 69, 100);
 }
-li{
-    float: left;
-    margin-left: 20px;
+.timer{
+    color: rgb(137, 189, 235);
+}
+.timer span{
+    font-size: 22px;
 }
 input{
     height: 35px;
@@ -13,7 +15,8 @@ input{
     outline: none;
 }
 .newGameBtn{
-    position: absolute;
+    /* position: absolute; */
+
 }
 .card{
     height: 80px !important;

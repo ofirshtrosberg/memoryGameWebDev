@@ -55,7 +55,6 @@ $(() => {
     var numCardUser = 0;
     var userNameInput;
 
-
     $("#playBtn").click(() => {
         var userName = document.getElementById("inputUserName").value;
         console.log(userName);
@@ -94,6 +93,41 @@ $(() => {
 
 
     function startGame(userName, numCards) {
+        var secondsCounter = 0;
+        setInterval(changeTime, 1000);
+        var seconds = document.getElementsByClassName("seconds")[0];
+        var minutes = document.getElementsByClassName("minutes")[0];
+        var hours = document.getElementsByClassName("seconds")[0];
+        function changeTime(){
+            secondsCounter++;
+            var currSeconds = secondsCounter%60;
+            var currMinutes = Math.floor(secondsCounter/60);
+            // var currHours = Math.floor(secondsCounter/3600);
+            if(currSeconds<10){
+               
+                seconds.innerHTML="0"+currSeconds;
+            }
+            else{
+                seconds.innerHTML=currSeconds;
+            }
+            if(currMinutes<10){
+                minutes.innerHTML="0"+currMinutes;
+            }
+            else{
+                minutes.innerHTML=currMinutes;
+            }
+            // if(currHours<10){
+            //     hours.innerHTML="0"+currHours;
+            // }
+            // else{
+            //     hours.innerHTML=currHours;
+            // }
+        }
+
+
+
+
+
         $(".userName").text("Hello " + userName + "!");
 
         console.log("test");
@@ -131,6 +165,7 @@ $(() => {
 
         }
         //-------- Creating the Board Game --------//
+       
 
         function endGame() {
             // $(".cards").addClass("d-none"); //remove the cards
