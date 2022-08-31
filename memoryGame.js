@@ -1,5 +1,4 @@
 $(() => {
-
     //-------- Creating the Board Game --------//
     var imgArr =
         ['/images/img1.png',
@@ -157,63 +156,72 @@ $(() => {
         }
         //-------- Creating the Board Game --------//
 
+    function endGame() {
+        $(".cards").addClass("d-none");
+        $(".endOfGameDiv").removeClass("d-none");
+        var clappingSound = new Audio("./sounds/clapping.mp3");
+        clappingSound.play();
+    }
+    
+    $(".flipCard").flip({
+        axis: 'y',
+        trigger: 'click'
+    });
+    var clickedCounter = 0;  // how many cards are clicked now 
+    var pairFound = 0; //number of pair found
+    $(".flipCard").click(function () {
+        if (!$(this).hasClass("disabledClick")) {
+            var clickSound = new Audio("./sounds/clickAudio.wav");
+            clickSound.play();
+            clickedCounter++;
+            $(this).addClass("clickedCard");
+            $(this).addClass("disabledClick");
 
-        //-------- Ending the Game --------//
-        function endGame() {
-            console.log("end of the game");
-        }
-        //-------- Ending the Game --------//
+            if (clickedCounter == 2) {
+                document.getElementsByClassName('cards')[0].style.pointerEvents = 'none';
 
+                var card1 = document.getElementsByClassName("clickedCard")[0];
+                var card2 = document.getElementsByClassName("clickedCard")[1];
+                var img1 = card1.getElementsByClassName("backImg")[0].src;
+                var img2 = card2.getElementsByClassName("backImg")[0].src;
 
-        //-------- Flipping the cards --------//
-        $(".flipCard").flip({
-            axis: 'y',
-            trigger: 'click'
-        });
-        var clickedCounter = 0;  // how many cards are clicked now 
-        var pairFound = 0;
-        $(".flipCard").click(function () {
-            if (!$(this).hasClass("disabledClick")) {
-                // console.log("click");
-                clickedCounter++;
-                $(this).addClass("clickedCard");
-                $(this).addClass("disabledClick");
-                // $(this).off(".flip");
-
-                if (clickedCounter == 2) {
-                    var card1 = document.getElementsByClassName("clickedCard")[0];
-                    var card2 = document.getElementsByClassName("clickedCard")[1];
-                    var img1 = card1.getElementsByClassName("backImg")[0].src;
-                    var img2 = card2.getElementsByClassName("backImg")[0].src;
-
-                    if (img1 == img2) {
-
-                        pairFound++;
-                        console.log(pairFound)
-                        $(card1).off(".flip"); // turns off the ability to flip
-                        $(card2).off(".flip"); // turns off the ability to flip
-                        clickedCounter = 0;
-                        $(card1).removeClass("clickedCard");
-                        $(card2).removeClass("clickedCard");
-                        if (pairFound == numOfPairs) {
-                            endGame();
-                        }
-                    }
-                    else {
+                if (img1 == img2) {
+                    setTimeout(function () {
+                    var pairFoundSound = new Audio("./sounds/pairFoundAudio.wav");
+                    pairFoundSound.play();
+                    pairFound++;
+                    console.log(pairFound)
+                    $(card1).off(".flip"); // turns off the ability to flip
+                    $(card2).off(".flip"); // turns off the ability to flip
+                    clickedCounter = 0;
+                    $(card1).removeClass("clickedCard");
+                    $(card2).removeClass("clickedCard");
+                     document.getElementsByClassName('cards')[0].style.pointerEvents = 'auto';
+                    if (pairFound == numOfPairs) {
                         setTimeout(function () {
-                            $(card1).flip(false);
-                            $(card2).flip(false);
-                            $(card1).removeClass("disabledClick");
-                            $(card1).removeClass("clickedCard");
-                            $(card2).removeClass("disabledClick");
-                            $(card2).removeClass("clickedCard");
-                            clickedCounter = 0;
+                            endGame();
                         }, 1500);
                     }
+                }, 1000); 
+                }
+                else {
+                    setTimeout(function () {
+                        $(card1).flip(false);
+                        $(card2).flip(false);
+                        $(card1).removeClass("disabledClick");
+                        $(card1).removeClass("clickedCard");
+                        $(card2).removeClass("disabledClick");
+                        $(card2).removeClass("clickedCard");
+                        clickedCounter = 0;
+                        document.getElementsByClassName('cards')[0].style.pointerEvents = 'auto';
+                    }, 1500);
                 }
             }
-        });
-        //-------- Flipping the cards --------//
-    }
- 
+        }
+        else{
+            $(this).flip(true)
+        }
+       
+    });
+}
 });
