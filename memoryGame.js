@@ -1,5 +1,4 @@
 $(() => {
-    //-------- Creating the Board Game --------//
     var imgArr =
         ['/images/img1.png',
             '/images/img2.jpg',
@@ -52,107 +51,157 @@ $(() => {
             '/images/img49.jpg',
             '/images/img50.png'];
 
-    var numCardUser = 6;
-    var numOfPairs = numCardUser / 2; //? 10 from the user ----> means it should be 5 = from user/2 --> update dynamically
+
+    var numCardUser = 0;
+    var userNameInput;
 
 
-    // Creating the relevant img array with the num of cards chosen by the user
-    var CurrImgArr = []
-    var count = 0;
+    $("#playBtn").click(() => {
+        var userName = document.getElementById("inputUserName").value;
+        console.log(userName);
+        var numOfCards = document.getElementById("inputNumCard").value;
+        console.log(numOfCards);
 
-    for (var i = 0; i < numOfPairs; i++) {
-        CurrImgArr[count] = imgArr[i];
-        CurrImgArr[count + 1] = imgArr[i];
-        count += 2;
-    }
-    // console.log(CurrImgArr);
+        if (userName == '' && numOfCards == '') {
+            $(".error").text("Invalid input - Both of them are required");
+            event.preventDefault();
 
-
-    // Shuffle the images array
-    // var shuffledImgArr = imgArr.sort(() => Math.random() - 0.5).slice(0, numOfPairs); //? using the cardsNum
-    var shuffledImgArr = CurrImgArr.sort(() => Math.random() - 0.5).slice(0, numCardUser); //? using the cardsNum
-    // console.log(shuffledImgArr);
-
-
-    // Creating the cards for the game from the shuffled new img array 
-    for (var i = 0; i < shuffledImgArr.length; i++) {
-        var card = $(".flipCard").prop("outerHTML");
-        // console.log(card);
-        // Must copy to another var in order to save the changes
-        var NewCard = $(card);
-        NewCard.removeClass("d-none");
-        $(".backImg", NewCard).attr("src", shuffledImgArr[i]);
-        // console.log("!!!!!!!!!!!!!");
-        // console.log(NewCard);
-        $(".cardsRow").append(NewCard);
-    } 
-    //-------- Creating the Board Game --------//
-
-    function endGame() {
-        $(".cards").addClass("d-none");
-        $(".endOfGameDiv").removeClass("d-none");
-        var clappingSound = new Audio("./sounds/clapping.mp3");
-        clappingSound.play();
-    }
-    
-    $(".flipCard").flip({
-        axis: 'y',
-        trigger: 'click'
+        }
+        else if (userName == '') {
+            $(".error").text("Invalid input - Username is required");
+            event.preventDefault();
+        }
+        else if (numOfCards == '') {
+            $(".error").text("Invalid input - Number of card is required");
+            event.preventDefault();
+        }
+        else if (numOfCards % 2 != 0) {
+            $(".error").text("Invalid input - Number of card must be an even number");
+            event.preventDefault();
+            console.log("test");
+        }
+        else if (numOfCards > 100) {
+            $(".error").text("Invalid input - The max number of card is 100");
+            event.preventDefault();
+        }
+        else {
+            numCardUser = document.getElementById("inputNumCard").value;
+            userNameInput = document.getElementById("inputUserName").value;
+            $('.newGameForm').modal('toggle');
+            startGame(userNameInput, numCardUser);
+        }
     });
-    var clickedCounter = 0;  // how many cards are clicked now 
-    var pairFound = 0; //number of pair found
-    $(".flipCard").click(function () {
-        if (!$(this).hasClass("disabledClick")) {
-            var clickSound = new Audio("./sounds/clickAudio.wav");
-            clickSound.play();
-            clickedCounter++;
-            $(this).addClass("clickedCard");
-            $(this).addClass("disabledClick");
 
-            if (clickedCounter == 2) {
-                document.getElementsByClassName('cards')[0].style.pointerEvents = 'none';
 
-                var card1 = document.getElementsByClassName("clickedCard")[0];
-                var card2 = document.getElementsByClassName("clickedCard")[1];
-                var img1 = card1.getElementsByClassName("backImg")[0].src;
-                var img2 = card2.getElementsByClassName("backImg")[0].src;
+    function startGame(userName, numCards) {
+        $(".userName").text("Hello " + userName + "!");
 
-                if (img1 == img2) {
-                    setTimeout(function () {
-                    var pairFoundSound = new Audio("./sounds/pairFoundAudio.wav");
-                    pairFoundSound.play();
-                    pairFound++;
-                    console.log(pairFound)
-                    $(card1).off(".flip"); // turns off the ability to flip
-                    $(card2).off(".flip"); // turns off the ability to flip
-                    clickedCounter = 0;
-                    $(card1).removeClass("clickedCard");
-                    $(card2).removeClass("clickedCard");
-                     document.getElementsByClassName('cards')[0].style.pointerEvents = 'auto';
-                    if (pairFound == numOfPairs) {
+        console.log("test");
+        console.log(userName);
+        console.log(numCards);
+
+        //-------- Creating the Board Game --------//
+
+        // var numCardUser = document.getElementById("inputNumCard").value;
+        var numOfPairs = numCardUser / 2; //? 10 from the user ----> means it should be 5 = from user/2 --> update dynamically
+
+        // Creating the relevant img array with the num of cards chosen by the user
+        var CurrImgArr = []
+        var count = 0;
+
+        for (var i = 0; i < numOfPairs; i++) {
+            CurrImgArr[count] = imgArr[i];
+            CurrImgArr[count + 1] = imgArr[i];
+            count += 2;
+        }
+        console.log(CurrImgArr);
+
+        // Shuffle the images array
+        var shuffledImgArr = CurrImgArr.sort(() => Math.random() - 0.5).slice(0, numCardUser);
+        console.log(shuffledImgArr);
+
+        // Creating the cards for the game from the shuffled new img array 
+        for (var i = 0; i < shuffledImgArr.length; i++) {
+            var card = $(".flipCard").prop("outerHTML");
+            // Must copy to another var in order to save the changes
+            var NewCard = $(card);
+            NewCard.removeClass("d-none");
+            $(".backImg", NewCard).attr("src", shuffledImgArr[i]);
+            $(".cardsRow").append(NewCard);
+
+        }
+        //-------- Creating the Board Game --------//
+
+        function endGame() {
+            $(".cards").addClass("d-none"); //remove the cards
+            $(".endOfGameDiv").removeClass("d-none"); //show end of game form
+            var clappingSound = new Audio("./sounds/clapping.mp3"); //end of game sound
+            clappingSound.play();
+        }
+
+
+        $(".flipCard").flip({
+            axis: 'y',
+            trigger: 'click'
+        });
+        var clickedCounter = 0;  // how many cards are clicked now 
+        var pairFound = 0; //number of pair found
+        $(".flipCard").click(function () {
+            // if click is valid
+            if (!$(this).hasClass("disabledClick")) {
+                var clickSound = new Audio("./sounds/clickAudio.wav"); 
+                clickSound.play();
+                clickedCounter++;
+                $(this).addClass("clickedCard"); // clickedCard mean the card is open
+                $(this).addClass("disabledClick"); // disabledClick means you can't click on this card
+
+                //check if the 2 open card have the same image
+                if (clickedCounter == 2) {
+                    document.getElementsByClassName('cards')[0].style.pointerEvents = 'none'; // disable the ability to click on cards
+                    var card1 = document.getElementsByClassName("clickedCard")[0];
+                    var card2 = document.getElementsByClassName("clickedCard")[1];
+                    var img1 = card1.getElementsByClassName("backImg")[0].src;
+                    var img2 = card2.getElementsByClassName("backImg")[0].src;
+                    // if the 2 open cards are pair
+                    if (img1 == img2) {
                         setTimeout(function () {
-                            endGame();
+                            var pairFoundSound = new Audio("./sounds/pairFoundAudio.wav");
+                            pairFoundSound.play();
+                            pairFound++;
+                            console.log(pairFound)
+                            $(card1).off(".flip"); // turns off the ability to flip
+                            $(card2).off(".flip"); // turns off the ability to flip
+                            clickedCounter = 0;
+                            $(card1).removeClass("clickedCard");
+                            $(card2).removeClass("clickedCard");
+                            document.getElementsByClassName('cards')[0].style.pointerEvents = 'auto'; //enable the ability to click on cards
+                            // if all pairs found
+                            if (pairFound == numOfPairs) {
+                                setTimeout(function () {
+                                    endGame();
+                                }, 1500);
+                            }
+                        }, 1000);
+                    }
+                    else {
+                        // if the 2 open cards are'nt pair
+                        setTimeout(function () {
+                            $(card1).flip(false); // close the first card
+                            $(card2).flip(false);// close the second card
+                            $(card1).removeClass("disabledClick");
+                            $(card1).removeClass("clickedCard");
+                            $(card2).removeClass("disabledClick");
+                            $(card2).removeClass("clickedCard");
+                            clickedCounter = 0;
+                            document.getElementsByClassName('cards')[0].style.pointerEvents = 'auto';  //enable the ability to click on cards
                         }, 1500);
                     }
-                }, 1000); 
-                }
-                else {
-                    setTimeout(function () {
-                        $(card1).flip(false);
-                        $(card2).flip(false);
-                        $(card1).removeClass("disabledClick");
-                        $(card1).removeClass("clickedCard");
-                        $(card2).removeClass("disabledClick");
-                        $(card2).removeClass("clickedCard");
-                        clickedCounter = 0;
-                        document.getElementsByClassName('cards')[0].style.pointerEvents = 'auto';
-                    }, 1500);
                 }
             }
-        }
-        else{
-            $(this).flip(true)
-        }
-       
-    });
+            else {
+                $(this).flip(true); // prevent clicking the same card twice
+            }
+
+        });
+    }
 });
