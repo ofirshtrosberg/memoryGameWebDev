@@ -7,6 +7,12 @@ body{
 .timer span{
     font-size: 22px;
 }
+.finishTimer{
+    color: rgb(1, 41, 76);
+}
+.finishTimer span{
+    font-size: 22px;
+}
 input{
     height: 35px;
     width: 300px;

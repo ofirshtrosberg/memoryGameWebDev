@@ -54,6 +54,7 @@ $(() => {
 
     var numCardUser = 0;
     var userNameInput;
+    var secondsCounter;
 
     $("#playBtn").click(() => {
         var userName = document.getElementById("inputUserName").value;
@@ -90,19 +91,17 @@ $(() => {
             startGame(userNameInput, numCardUser);
         }
     });
-
-
-    function startGame(userName, numCards) {
-        var secondsCounter = 0;
+    function timer(){
+        secondsCounter = 0;
         setInterval(changeTime, 1000);
         var seconds = document.getElementsByClassName("seconds")[0];
         var minutes = document.getElementsByClassName("minutes")[0];
-        var hours = document.getElementsByClassName("seconds")[0];
+        var hours = document.getElementsByClassName("hours")[0];
         function changeTime(){
             secondsCounter++;
             var currSeconds = secondsCounter%60;
             var currMinutes = Math.floor(secondsCounter/60);
-            // var currHours = Math.floor(secondsCounter/3600);
+            var currHours = Math.floor(secondsCounter/3600);
             if(currSeconds<10){
                
                 seconds.innerHTML="0"+currSeconds;
@@ -116,18 +115,17 @@ $(() => {
             else{
                 minutes.innerHTML=currMinutes;
             }
-            // if(currHours<10){
-            //     hours.innerHTML="0"+currHours;
-            // }
-            // else{
-            //     hours.innerHTML=currHours;
-            // }
+            if(currHours<10){
+                hours.innerHTML="0"+currHours;
+            }
+            else{
+                hours.innerHTML=currHours;
+            }
         }
+    }
 
-
-
-
-
+    function startGame(userName, numCards) {
+        timer();
         $(".userName").text("Hello " + userName + "!");
 
         console.log("test");
@@ -169,6 +167,16 @@ $(() => {
 
         function endGame() {
             // $(".cards").addClass("d-none"); //remove the cards
+            var seconds = document.getElementsByClassName("seconds")[0].innerHTML;
+            var minutes = document.getElementsByClassName("minutes")[0].innerHTML;
+            var hours = document.getElementsByClassName("hours")[0].innerHTML;
+
+            var finishSeconds = document.getElementsByClassName("seconds")[1];
+            var finishMinutes = document.getElementsByClassName("minutes")[1];
+            var fhinishHours = document.getElementsByClassName("hours")[1];
+            finishSeconds.innerHTML=seconds;
+            finishMinutes.innerHTML=minutes;
+            fhinishHours.innerHTML=hours;
             $(".endOfGameDiv").removeClass("d-none"); //show end of game form
             var clappingSound = new Audio("./sounds/clapping.mp3"); //end of game sound
             clappingSound.play();
