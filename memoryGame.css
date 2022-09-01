@@ -20,10 +20,6 @@ input{
     border: 1px solid rgb(53, 53, 104);
     outline: none;
 }
-.newGameBtn{
-    /* position: absolute; */
-
-}
 .card{
     height: 80px !important;
 }
