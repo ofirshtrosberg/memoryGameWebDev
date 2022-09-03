@@ -55,6 +55,10 @@ $(() => {
     var numCardUser = 0;
     var userNameInput;
     var secondsCounter;
+    var seconds;
+    var minutes;
+    var hours;
+    setInterval(timerChanger, 1000);
 
     $("#playBtn").click(() => {
         var userName = document.getElementById("inputUserName").value;
@@ -91,36 +95,41 @@ $(() => {
             startGame(userNameInput, numCardUser);
         }
     });
+    
     function timer(){
         secondsCounter = 0;
-        setInterval(changeTime, 1000);
-        var seconds = document.getElementsByClassName("seconds")[0];
-        var minutes = document.getElementsByClassName("minutes")[0];
-        var hours = document.getElementsByClassName("hours")[0];
-        function changeTime(){
-            secondsCounter++;
-            var currSeconds = secondsCounter%60;
-            var currMinutes = Math.floor(secondsCounter/60);
-            var currHours = Math.floor(secondsCounter/3600);
-            if(currSeconds<10){
-               
-                seconds.innerHTML="0"+currSeconds;
-            }
-            else{
-                seconds.innerHTML=currSeconds;
-            }
-            if(currMinutes<10){
-                minutes.innerHTML="0"+currMinutes;
-            }
-            else{
-                minutes.innerHTML=currMinutes;
-            }
-            if(currHours<10){
-                hours.innerHTML="0"+currHours;
-            }
-            else{
-                hours.innerHTML=currHours;
-            }
+        seconds = document.getElementsByClassName("seconds")[0];
+        minutes = document.getElementsByClassName("minutes")[0];
+        hours = document.getElementsByClassName("hours")[0]; 
+        seconds.innerHTML = "00";
+        minutes.innerHTML = "00";
+        hours.innerHTML = "00";
+        $(".timer").removeClass("d-none");
+        
+    }
+    function timerChanger(){
+        secondsCounter++;
+        var currSeconds = secondsCounter%60;
+        var currMinutes = Math.floor(secondsCounter/60);
+        var currHours = Math.floor(secondsCounter/3600);
+        if(currSeconds<10){
+           
+            seconds.innerHTML="0"+currSeconds;
+        }
+        else{
+            seconds.innerHTML=currSeconds;
+        }
+        if(currMinutes<10){
+            minutes.innerHTML="0"+currMinutes;
+        }
+        else{
+            minutes.innerHTML=currMinutes;
+        }
+        if(currHours<10){
+            hours.innerHTML="0"+currHours;
+        }
+        else{
+            hours.innerHTML=currHours;
         }
     }
 
@@ -166,6 +175,7 @@ $(() => {
        
 
         function endGame() {
+            $(".timer").addClass("d-none");
             // $(".cards").addClass("d-none"); //remove the cards
             var seconds = document.getElementsByClassName("seconds")[0].innerHTML;
             var minutes = document.getElementsByClassName("minutes")[0].innerHTML;
