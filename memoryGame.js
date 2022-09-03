@@ -139,6 +139,7 @@ $(() => {
     }
 
     function startGame(userName, numCards) {
+        $(".cards").removeClass("d-none");
         gamesCounter++;
         timer();
         $(".userName").text("Hello " + userName + "!");
@@ -181,6 +182,7 @@ $(() => {
        
 
         function endGame() {
+            $(".cards").addClass("d-none");
             $(".timer").addClass("d-none");
             // $(".cards").addClass("d-none"); //remove the cards
             var seconds = document.getElementsByClassName("seconds")[0].innerHTML;
@@ -238,7 +240,7 @@ $(() => {
                             if (pairFound == numOfPairs) {
                                 setTimeout(function () {
                                     endGame();
-                                }, 1500);
+                                }, 600);
                             }
                         }, 1000);
                     }
