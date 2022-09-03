@@ -51,7 +51,7 @@ $(() => {
             '/images/img49.jpg',
             '/images/img50.png'];
 
-
+    var gamesCounter = 0;
     var numCardUser = 0;
     var userNameInput;
     var secondsCounter;
@@ -61,6 +61,11 @@ $(() => {
     setInterval(timerChanger, 1000);
 
     $("#playBtn").click(() => {
+        if(gamesCounter>=1){
+            $(".cardsRow").children().not(".flipCard.d-none").remove();
+            $(".endOfGameDiv").addClass("d-none");
+            $('.newGameForm').modal('toggle');
+        }
         var userName = document.getElementById("inputUserName").value;
         console.log(userName);
         var numOfCards = document.getElementById("inputNumCard").value;
@@ -134,6 +139,7 @@ $(() => {
     }
 
     function startGame(userName, numCards) {
+        gamesCounter++;
         timer();
         $(".userName").text("Hello " + userName + "!");
 
