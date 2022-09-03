@@ -56,7 +56,7 @@ input{
     position: relative;
     width: 500px;
     height: 400px; 
-    z-index: 150;
+    z-index: 150 !important;
     background-image: url(./images/winner.jpg);
     margin: 20px auto;
     border-radius: 5px;
@@ -64,7 +64,8 @@ input{
 .endOfGameForm{
     position: absolute;
     width: 100%;
-    height: 100%;   
+    height: 100%;  
+    z-index: 151 !important;
 }
 .startOverButtons{
     width:150px;
