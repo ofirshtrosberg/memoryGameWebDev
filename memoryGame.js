@@ -59,31 +59,31 @@ $(() => {
     var minutes;
     var hours;
     setInterval(timerChanger, 1000);
-    $("#openningPlayBtn").click(() => {
-        var userName = document.getElementById("openningUserName").value;
-        var numOfCards = document.getElementById("openningNumCard").value;
+    $("#openingPlayBtn").click(() => {
+        var userName = document.getElementById("openingUserName").value;
+        var numOfCards = document.getElementById("openingNumCard").value;
 
         if (userName == '' && numOfCards == '') {
-            $(".errorOpenning").text("Invalid input - Both of them are required");
+            $(".erroropening").text("Invalid input - Both of them are required");
         }
         else if (userName == '') {
-            $(".errorOpenning").text("Invalid input - Username is required");
+            $(".erroropening").text("Invalid input - Username is required");
         }
         else if (numOfCards == '') {
-            $(".errorOpenning").text("Invalid input - Number of card is required");
+            $(".erroropening").text("Invalid input - Number of card is required");
         }
         else if (numOfCards % 2 != 0) {
-            $(".errorOpenning").text("Invalid input - Number of card must be an even number");
+            $(".erroropening").text("Invalid input - Number of card must be an even number");
         }
         else if (numOfCards > 100) {
-            $(".errorOpenning").text("Invalid input - The max number of card is 100");
+            $(".erroropening").text("Invalid input - The max number of card is 100");
         }
         else {
-            numCardUser = document.getElementById("openningNumCard").value;
-            userNameInput = document.getElementById("openningUserName").value;
-            $(".openningFormContainer").addClass("d-none");
+            numCardUser = document.getElementById("openingNumCard").value;
+            userNameInput = document.getElementById("openingUserName").value;
+            $(".openingFormContainer").addClass("d-none");
             document.getElementById("newGameBtnId").style.visibility = "visible";
-            $(".openningTitle").addClass("d-none");
+            $(".openingTitle").addClass("d-none");
             startGame(userNameInput, numCardUser);
         }
     });
@@ -95,31 +95,22 @@ $(() => {
             $('.newGameForm').modal('toggle');
         }
         var userName = document.getElementById("inputUserName").value;
-        // console.log(userName);
         var numOfCards = document.getElementById("inputNumCard").value;
-        // console.log(numOfCards);
 
         if (userName == '' && numOfCards == '') {
             $(".error").text("Invalid input - Both of them are required");
-            // event.preventDefault();
-
         }
         else if (userName == '') {
             $(".error").text("Invalid input - Username is required");
-            // event.preventDefault();
         }
         else if (numOfCards == '') {
             $(".error").text("Invalid input - Number of card is required");
-            // event.preventDefault();
         }
         else if (numOfCards % 2 != 0) {
             $(".error").text("Invalid input - Number of card must be an even number");
-            // event.preventDefault();
-            // console.log("test");
         }
         else if (numOfCards > 100) {
             $(".error").text("Invalid input - The max number of card is 100");
-            // event.preventDefault();
         }
         else {
             numCardUser = document.getElementById("inputNumCard").value;
@@ -172,13 +163,8 @@ $(() => {
         timer();
         $(".userName").text("Hello " + userName + "!");
 
-        console.log("test");
-        console.log(userName);
-        console.log(numCards);
-
         //-------- Creating the Board Game --------//
 
-        // var numCardUser = document.getElementById("inputNumCard").value;
         var numOfPairs = numCardUser / 2; //? 10 from the user ----> means it should be 5 = from user/2 --> update dynamically
 
         // Creating the relevant img array with the num of cards chosen by the user
@@ -190,11 +176,9 @@ $(() => {
             CurrImgArr[count + 1] = imgArr[i];
             count += 2;
         }
-        console.log(CurrImgArr);
-
+        
         // Shuffle the images array
         var shuffledImgArr = CurrImgArr.sort(() => Math.random() - 0.5).slice(0, numCardUser);
-        console.log(shuffledImgArr);
 
         // Creating the cards for the game from the shuffled new img array 
         for (var i = 0; i < shuffledImgArr.length; i++) {
@@ -212,7 +196,6 @@ $(() => {
         function endGame() {
             $(".cards").addClass("d-none");
             $(".timer").addClass("d-none");
-            // $(".cards").addClass("d-none"); //remove the cards
             var seconds = document.getElementsByClassName("seconds")[0].innerHTML;
             var minutes = document.getElementsByClassName("minutes")[0].innerHTML;
             var hours = document.getElementsByClassName("hours")[0].innerHTML;
@@ -241,23 +224,22 @@ $(() => {
                 var clickSound = new Audio("./sounds/clickAudio.wav"); 
                 clickSound.play();
                 clickedCounter++;
-                $(this).addClass("clickedCard"); // clickedCard mean the card is open
+                $(this).addClass("clickedCard"); // clickedCard mean the card is ope
                 $(this).addClass("disabledClick"); // disabledClick means you can't click on this card
 
-                //check if the 2 open card have the same image
+                //check if the 2 ope card have the same image
                 if (clickedCounter == 2) {
                     document.getElementsByClassName('cards')[0].style.pointerEvents = 'none'; // disable the ability to click on cards
                     var card1 = document.getElementsByClassName("clickedCard")[0];
                     var card2 = document.getElementsByClassName("clickedCard")[1];
                     var img1 = card1.getElementsByClassName("backImg")[0].src;
                     var img2 = card2.getElementsByClassName("backImg")[0].src;
-                    // if the 2 open cards are pair
+                    // if the 2 ope cards are pair
                     if (img1 == img2) {
                         setTimeout(function () {
                             var pairFoundSound = new Audio("./sounds/pairFoundAudio.wav");
                             pairFoundSound.play();
                             pairFound++;
-                            console.log(pairFound)
                             $(card1).off(".flip"); // turns off the ability to flip
                             $(card2).off(".flip"); // turns off the ability to flip
                             clickedCounter = 0;
@@ -273,7 +255,7 @@ $(() => {
                         }, 1000);
                     }
                     else {
-                        // if the 2 open cards are'nt pair
+                        // if the 2 ope cards are'nt pair
                         setTimeout(function () {
                             $(card1).flip(false); // close the first card
                             $(card2).flip(false);// close the second card

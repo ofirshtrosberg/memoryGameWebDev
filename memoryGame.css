@@ -20,33 +20,33 @@ body{
 .finishTimer span{
     font-size: 22px;
 }
-.openningTitle{
+.openingTitle{
     margin-top: 2px !important;
     margin-bottom: 2px !important;
     color: rgb(123, 156, 248);
 }
-.openningFormContainer{
+.openingFormContainer{
     width: 40%;   
 }
-.openningForm{
+.openingForm{
     background-color: white;
     width: 95%;
     height: 100%;
     padding: 2% 0% 0% 2%;
     border-radius: 4px;
 }
-.openningForm .row{
+.openingForm .row{
     width: 100%;
 }
-.openningImageDiv{
+.openingImageDiv{
     width: 60% !important;
     height: 60% !important;
     margin-left: 17%;
 }
-.openningImage{
+.openingImage{
     width: 100%;
 }
-.openningPlayBtn{
+.openingPlayBtn{
     width: 80px;
     height: 38px;
 }
@@ -77,14 +77,13 @@ input{
     height: 110px;
     border-radius: 4px;
 }
-.errorOpenning{
+.erroropening{
     color: rgb(241, 10, 10);
 }
 .error{
     color: rgb(241, 10, 10);
     height: 15px;
     padding-top: 3px;
-   /* padding-bottom:px; */
 }
 .userName{
     color:aliceblue;

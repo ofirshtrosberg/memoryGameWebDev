@@ -10,7 +10,6 @@
 </head>
 
 <body>
-    <!-- nav bar -->
     <nav class="navbar bg-dark">
         <div class="container-fluid">
         <span class="userName"></span>  
@@ -27,36 +26,33 @@
             </button>  
         </div>
     </nav>
-    <h1 class="openningTitle text-center">Memory Game</h1>
-    <div class="container d-flex justify-content-center openningFormContainer">
-        <form class="openningForm">
+    <h1 class="openingTitle text-center">Memory Game</h1>
+    <div class="container d-flex justify-content-center openingFormContainer">
+        <form class="openingForm">
             <div class="row">
                 <div class="mb-3 col">
                 <label class="form-label">Name:</label>
-                <input required id="openningUserName" type="text" class="form-control">
+                <input required id="openingUserName" type="text" class="form-control">
                 </div>
             </div>
             <div class="row">
                 <div class="mb-2 col">
                 <label class="form-label">Number of cards:</label>
-                <input required id="openningNumCard" type="number" class="form-control">
+                <input required id="openingNumCard" type="number" class="form-control">
                 </div>
             </div>
-            <div class="errorOpenning"></div>
+            <div class="erroropening"></div>
             <div class="row mt-1">
                 <div class="col">
-                <button id="openningPlayBtn" type="button" class="btn btn-primary openningPlayBtn">Play</button>
+                <button id="openingPlayBtn" type="button" class="btn btn-primary openingPlayBtn">Play</button>
                 </div>
             </div>    
-            <div class="openningImageDiv row">
-                    <img class="openningImage" src="./images/openningImage.jpg">
+            <div class="openingImageDiv row">
+                <img class="openingImage" src="./images/openingImage.jpg">
             </div>       
       </form>
     </div>
-
-
-
-    
+ 
     <div class="modal fade newGameForm" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
