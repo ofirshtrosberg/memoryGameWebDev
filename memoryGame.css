@@ -15,7 +15,9 @@ body{
     font-size: 22px;
 }
 .finishTimer{
+    margin-bottom: 4px !important;
     color: rgb(1, 41, 76);
+    font-family: var(--bs-btn-font-family) !important;
 }
 .finishTimer span{
     font-size: 22px;

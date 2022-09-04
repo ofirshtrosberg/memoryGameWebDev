@@ -84,6 +84,7 @@ $(() => {
             $(".openingFormContainer").addClass("d-none");
             document.getElementById("newGameBtnId").style.visibility = "visible";
             $(".openingTitle").addClass("d-none");
+            $(".erroropening").text("");
             startGame(userNameInput, numCardUser);
         }
     });
@@ -92,7 +93,6 @@ $(() => {
         if(gamesCounter>=1){
             $(".cardsRow").children().not(".flipCard.d-none").remove();
             $(".endOfGameDiv").addClass("d-none");
-            $('.newGameForm').modal('toggle');
         }
         var userName = document.getElementById("inputUserName").value;
         var numOfCards = document.getElementById("inputNumCard").value;
@@ -116,7 +116,9 @@ $(() => {
             numCardUser = document.getElementById("inputNumCard").value;
             userNameInput = document.getElementById("inputUserName").value;
             $('.newGameForm').modal('toggle');
+            $(".error").text("");
             startGame(userNameInput, numCardUser);
+            
         }
     });
     
