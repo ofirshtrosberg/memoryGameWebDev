@@ -83,6 +83,7 @@ $(() => {
             userNameInput = document.getElementById("openningUserName").value;
             $(".openningFormContainer").addClass("d-none");
             document.getElementById("newGameBtnId").style.visibility = "visible";
+            $(".openningTitle").addClass("d-none");
             startGame(userNameInput, numCardUser);
         }
     });
