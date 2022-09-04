@@ -6,6 +6,7 @@ body{
 }
 .timer{
     color: rgb(137, 189, 235);
+    margin-left: 35px;
 }
 .timer span{
     font-size: 22px;
