@@ -59,7 +59,34 @@ $(() => {
     var minutes;
     var hours;
     setInterval(timerChanger, 1000);
+    $("#openningPlayBtn").click(() => {
+        var userName = document.getElementById("openningUserName").value;
+        var numOfCards = document.getElementById("openningNumCard").value;
 
+        if (userName == '' && numOfCards == '') {
+            $(".errorOpenning").text("Invalid input - Both of them are required");
+        }
+        else if (userName == '') {
+            $(".errorOpenning").text("Invalid input - Username is required");
+        }
+        else if (numOfCards == '') {
+            $(".errorOpenning").text("Invalid input - Number of card is required");
+        }
+        else if (numOfCards % 2 != 0) {
+            $(".errorOpenning").text("Invalid input - Number of card must be an even number");
+        }
+        else if (numOfCards > 100) {
+            $(".errorOpenning").text("Invalid input - The max number of card is 100");
+        }
+        else {
+            numCardUser = document.getElementById("openningNumCard").value;
+            userNameInput = document.getElementById("openningUserName").value;
+            $(".openningFormContainer").addClass("d-none");
+            document.getElementById("newGameBtnId").style.visibility = "visible";
+            startGame(userNameInput, numCardUser);
+        }
+    });
+    
     $("#playBtn").click(() => {
         if(gamesCounter>=1){
             $(".cardsRow").children().not(".flipCard.d-none").remove();
@@ -67,31 +94,31 @@ $(() => {
             $('.newGameForm').modal('toggle');
         }
         var userName = document.getElementById("inputUserName").value;
-        console.log(userName);
+        // console.log(userName);
         var numOfCards = document.getElementById("inputNumCard").value;
-        console.log(numOfCards);
+        // console.log(numOfCards);
 
         if (userName == '' && numOfCards == '') {
             $(".error").text("Invalid input - Both of them are required");
-            event.preventDefault();
+            // event.preventDefault();
 
         }
         else if (userName == '') {
             $(".error").text("Invalid input - Username is required");
-            event.preventDefault();
+            // event.preventDefault();
         }
         else if (numOfCards == '') {
             $(".error").text("Invalid input - Number of card is required");
-            event.preventDefault();
+            // event.preventDefault();
         }
         else if (numOfCards % 2 != 0) {
             $(".error").text("Invalid input - Number of card must be an even number");
-            event.preventDefault();
-            console.log("test");
+            // event.preventDefault();
+            // console.log("test");
         }
         else if (numOfCards > 100) {
             $(".error").text("Invalid input - The max number of card is 100");
-            event.preventDefault();
+            // event.preventDefault();
         }
         else {
             numCardUser = document.getElementById("inputNumCard").value;

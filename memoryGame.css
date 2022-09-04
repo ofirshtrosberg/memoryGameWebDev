@@ -1,6 +1,9 @@
 body{
     background-color: rgb(34, 69, 100);
 }
+.newGameBtn{
+   visibility: hidden;
+}
 .timer{
     color: rgb(137, 189, 235);
 }
@@ -12,6 +15,32 @@ body{
 }
 .finishTimer span{
     font-size: 22px;
+}
+.openningFormContainer{
+    width: 40%;
+    
+}
+.openningForm{
+    background-color: white;
+    width: 95%;
+    height: 100%;
+    padding: 2% 0% 0% 2%;
+    border-radius: 4px;
+}
+.openningForm .row{
+    width: 100%;
+}
+.openningImageDiv{
+    width: 60% !important;
+    height: 60% !important;
+    margin-left: 17%;
+}
+.openningImage{
+    width: 100%;
+}
+.openningPlayBtn{
+    width: 80px;
+    height: 38px;
 }
 input{
     height: 35px;
@@ -39,6 +68,11 @@ input{
     width: 90px;
     height: 110px;
     border-radius: 4px;
+}
+.errorOpenning{
+    color: rgb(241, 10, 10);
+    /* height: 10px; */
+    /* padding-top: 3px; */
 }
 .error{
     color: rgb(241, 10, 10);
